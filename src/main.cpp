@@ -22,4 +22,16 @@ struct Ball {
     int x, y;
     int dx, dy;
 };
+Paddle leftPaddle, rightPaddle;
+Ball ball;
+// khoi tao sdl 
+SDL_Window* window = nullptr;
+SDL_Renderer* renderer = nullptr;
+bool running = true;
+
+void intiGame() {  // thiet lap vi tri ban dau cua vot va bong
+    leftPaddle = { 20, (SCREEN_HEIGHT - PADDLE_HEIGHT) / 2, 0 };
+    rightPaddle = { 20 , (SCREEN_HEIGHT - PADDLE_HEIGHT) / 2,0 };
+    ball = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, BALL_SPEED, BALL_SPEED };
+}
 
