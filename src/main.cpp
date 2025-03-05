@@ -1,8 +1,9 @@
 ﻿#include <SDL2/SDL.h>
-
-using namespace std;
+#include <iostream>
 
 int SDL_main(int argv, char* argc[]) {
+	std::cout << "Hello" << '\n';
+
 	SDL_Window* window = SDL_CreateWindow("Game", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
