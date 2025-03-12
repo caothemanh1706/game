@@ -61,11 +61,18 @@ void control(){// dieu khien vot
 void move() {
     leftPaddle.y += leftPaddle.dy;
     rightPaddle.y += rightPaddle.dy;
-
+   
     ball.x += ball.dx;
     ball.y += ball.dy;
 }
 void test() {
+    if (ball.y <= 0 || ball.y + BALL_SIZE >= SCREEN_HEIGHT) {
+        ball.dy = -ball.dy;
+    }
+    if (leftPaddle.y < 0) leftPaddle.y = 0;
+    if (leftPaddle.y > SCREEN_HEIGHT - PADDLE_HEIGHT) leftPaddle.y = SCREEN_HEIGHT - PADDLE_HEIGHT;
+    if (rightPaddle.y < 0) rightPaddle.y = 0;
+    if (rightPaddle.y > SCREEN_HEIGHT - PADDLE_HEIGHT) rightPaddle.y = SCREEN_HEIGHT - PADDLE_HEIGHT;
 
 }
 int SDL_main(int argc, char* argv[]) {
@@ -92,6 +99,8 @@ int SDL_main(int argc, char* argv[]) {
        SDL_RenderPresent(renderer); 
        control();
        move();
+       test();
+       SDL_Delay(15);
     }
 
 
