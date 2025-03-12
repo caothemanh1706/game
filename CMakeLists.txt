@@ -13,7 +13,6 @@ project ("main")
 
 # Include sub-projects.
 add_executable (main "src/main.cpp")
-file(COPY "src/Graphics" DESTINATION ${CMAKE_BINARY_DIR})
 
 find_package(SDL2 CONFIG REQUIRED)
 find_package(SDL2_ttf CONFIG REQUIRED)

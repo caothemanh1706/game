@@ -58,6 +58,16 @@ void control(){// dieu khien vot
         }
     }
 }
+void move() {
+    leftPaddle.y += leftPaddle.dy;
+    rightPaddle.y += rightPaddle.dy;
+
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+}
+void test() {
+
+}
 int SDL_main(int argc, char* argv[]) {
 
     SDL_Window* window = SDL_CreateWindow("Pong", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
@@ -81,6 +91,7 @@ int SDL_main(int argc, char* argv[]) {
 
        SDL_RenderPresent(renderer); 
        control();
+       move();
     }
 
 
