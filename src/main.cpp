@@ -1,5 +1,6 @@
 ﻿#include <SDL2/SDL.h>
 #include <iostream>
+#include <SDL2/SDL_ttf.h>
 using namespace std;
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -8,6 +9,8 @@ const int SCREEN_HEIGHT = 600;
 const int PADDLE_WIDTH = 10;
 const int PADDLE_HEIGHT = 100;
 const int PADDLE_SPEED = 10;
+int scoreLeft = 0;
+int scoreRight = 0;
 
 // dinh nghia qua bong
 const int BALL_SIZE = 10;
@@ -34,6 +37,7 @@ void initGame() {  // thiet lap vi tri ban dau cua vot va bong
     rightPaddle = { SCREEN_WIDTH - 30, (SCREEN_HEIGHT - PADDLE_HEIGHT) / 2,0 };
     ball = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, BALL_SPEED, BALL_SPEED };
 }
+
 void control(){// dieu khien vot
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
@@ -67,7 +71,7 @@ void move() {
 }
 void test() {
     if (ball.y <= 0 || ball.y + BALL_SIZE >= SCREEN_HEIGHT) {
-        ball.dy = -ball.dy;
+        ball.dy = - ball.dy;
     }
     if (leftPaddle.y < 0) leftPaddle.y = 0;
     if (leftPaddle.y > SCREEN_HEIGHT - PADDLE_HEIGHT) leftPaddle.y = SCREEN_HEIGHT - PADDLE_HEIGHT;
@@ -75,11 +79,18 @@ void test() {
     if (rightPaddle.y > SCREEN_HEIGHT - PADDLE_HEIGHT) rightPaddle.y = SCREEN_HEIGHT - PADDLE_HEIGHT;
 
 }
+void update() {
+    if (ball.x<0 || ball.x>SCREEN_WIDTH) {
+      initGame();
+    }
+}
 int SDL_main(int argc, char* argv[]) {
 
-    SDL_Window* window = SDL_CreateWindow("Pong", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("Pong",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+
 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+ 
     initGame();
 
     while (running) {
@@ -100,9 +111,9 @@ int SDL_main(int argc, char* argv[]) {
        control();
        move();
        test();
-       SDL_Delay(15);
+       update();
+       SDL_Delay(10);
     }
-
 
     return 0;
 
