@@ -66,8 +66,8 @@ void move() {
     leftPaddle.y += leftPaddle.dy;
     rightPaddle.y += rightPaddle.dy;
    
-    ball.x += ball.dx;
-    ball.y += ball.dy;
+    ball.x -= ball.dx;
+    ball.y -= ball.dy;
 }
 void test() {
     if (ball.y <= 0 || ball.y + BALL_SIZE >= SCREEN_HEIGHT) {
@@ -96,8 +96,12 @@ int SDL_main(int argc, char* argv[]) {
     while (running) {
         SDL_SetRenderDrawColor(renderer, 0, 55, 55, 255); //màu nền xanh thẩm
         SDL_RenderClear(renderer);
-
-       
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        for (int y = 0; y < SCREEN_HEIGHT; ++y) {
+            if (y % 5 == 0) {
+                SDL_RenderDrawPoint(renderer, SCREEN_WIDTH / 2, y);
+            }
+        }
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Màu trắng
         SDL_Rect leftPaddleRect = { leftPaddle.x, leftPaddle.y, PADDLE_WIDTH, PADDLE_HEIGHT };
         SDL_RenderFillRect(renderer, &leftPaddleRect);
