@@ -1,6 +1,7 @@
 ﻿#include "game.h"
 
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 int SDL_main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_EVERYTHING);
